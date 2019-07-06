@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="smiley_icons">
+        <item>@mipmap/smiley_super_happy</item>
+        <item>@mipmap/smiley_happy</item>
+        <item>@mipmap/smiley_normal</item>
+        <item>@mipmap/smiley_disappointed</item>
+        <item>@mipmap/smiley_sad</item>
+    </array>
+
+    <!--<array name="background_color">
+        <color name="faded_red">#ffde3c50</color>
+        <color name="warm_grey">#ff9b9b9b</color>
+        <color name="cornflower_blue_65">#a5468ad9</color>
+        <color name="light_sage">#ffb8e986</color>
+        <color name="banana_yellow">#fff9ec4f</color>
+    </array>-->
+
+
+</resources>

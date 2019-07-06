@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoodTracker</string>
+    <string name="smiley_face">Smiley face</string>
+    <string name="title_activity_swipe_left">SwipeLeft</string>
+    <string name="title_activity_swipe_right">SwipeRight</string>
+    <string name="title_activity_swipe_top">SwipeTop</string>
+</resources>
