@@ -86,7 +86,7 @@ public class HistoryInfos {
                         int y = i - (int) daysDiff;
 
 
-                        if (y >= 0) {
+                        if (y >= 0 && y < 7) {
                             String test1 = mPreferences.getString(PREF_KEY_DATE_TAB[y], "");
                             mPreferences.edit().putString(PREF_KEY_DATE_TAB[i], test1).apply();
 
