@@ -135,9 +135,19 @@ public class HistoryInfos {
     }
 
 
+    public ArrayList<String> getMyComments() {
+        return myComments;
+    }
 
+    public ArrayList<Integer> getMyMoods() {
+        return myMoods;
+    }
 
-public void addPrefs (int choice, String comment, String date){
+    public ArrayList<String> getMyDates() {
+        return myDates;
+    }
+
+    public void addPrefs (int choice, String comment, String date){
 
     mPreferences.edit().putString(PREF_KEY_COMMENT_TAB[0], comment).apply();
     mPreferences.edit().putInt(PREF_KEY_MOOD_TAB[0], choice).apply();

@@ -2,15 +2,18 @@ package com.exozz.moodtracker.Controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.exozz.moodtracker.Model.HistoryInfos;
 import com.exozz.moodtracker.R;
 
 
-import java.util.ArrayList;
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -20,13 +23,18 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        View view = inflater.inflate(R.layout.cell_history, viewGroup, false);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
 
-    }
+        mDataSet.getMyComments().get(position);
+        myViewHolder.mTextView.setText("");
+
+    } // recuperer la position et les valeurs a modifier
 
     @Override
     public int getItemCount() {
@@ -35,14 +43,21 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
+        public LinearLayout mLinearLayout;
+        public ImageView mImageView;
         public TextView mTextView;
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.timeOfMood);
+            mImageView = itemView.findViewById(R.id.iconComment);
+            mLinearLayout = itemView.findViewById(R.id.layoutHistoryMood);
+
+
+
+
         }
-
-
 
     }
 
