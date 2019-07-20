@@ -29,9 +29,11 @@ public class Mood {
         backgroundColor.add(R.color.warm_grey);
         backgroundColor.add(R.color.faded_red);
 
-
-
     }
+
+    public ArrayList<Integer> getBackgroundColors() {return backgroundColor; }
+
+
 
     public Integer getSmileyList() {
         return smileyList.get(ChoiceList);

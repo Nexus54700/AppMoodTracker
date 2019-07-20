@@ -1,7 +1,11 @@
 package com.exozz.moodtracker.Model;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.annotation.ColorRes;
 import android.util.Log;
+
+import com.exozz.moodtracker.R;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,6 +22,9 @@ public class HistoryInfos {
     private ArrayList<String> myComments ;
     private ArrayList<Integer> myMoods;
     private ArrayList<String> myDates;
+    private ArrayList<Color> myColors;
+
+
 
     private SharedPreferences mPreferences;
 
@@ -41,12 +48,12 @@ public class HistoryInfos {
 
 
 
-
     public HistoryInfos(SharedPreferences MyPrefs) {
         mPreferences = MyPrefs;
         myComments = new ArrayList<>();
         myMoods = new ArrayList<>() ;
         myDates = new ArrayList<>();
+
 
         getPrefs();
 

@@ -1,6 +1,9 @@
 package com.exozz.moodtracker.Controller;
 
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -8,17 +11,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.exozz.moodtracker.Model.HistoryInfos;
+import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.R;
 
+import java.util.ArrayList;
 
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
+
+
+
+    static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
+            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};
+
+
    private HistoryInfos mDataSet;
+   private Mood mMood;
+
+
+
 
     @NonNull
     @Override
@@ -31,10 +48,40 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
 
-        mDataSet.getMyComments().get(position);
-        myViewHolder.mTextView.setText("");
+
+       if (mDataSet.getMyMoods().get(position) != -1) {
+
+           myViewHolder.mLinearLayout.setVisibility(View.VISIBLE);
+
+           mDataSet.getMyDates().get(position);
+           myViewHolder.mTextView.setText(PREF_KEY_DAY_TAB[position]);
+
+           mDataSet.getMyComments().get(position);
+
+           if (mDataSet.getMyComments().isEmpty()) {
+               myViewHolder.mImageView.setVisibility(View.INVISIBLE);
+           } else
+               {
+                   myViewHolder.mImageView.setVisibility(View.VISIBLE);
+               }
+
+           myViewHolder.mLinearLayout.setWeightSum(mDataSet.getMyMoods().set(3, position));
+           int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position));
+
+           myViewHolder.mRelativeLayout.setBackgroundColor(ContextCompat.getColor(myViewHolder.itemView.getContext(), color)); // essaie de recuperé la valeur du mood pour changer le background de la list
+
+       }
+       else
+           {
+           myViewHolder.mLinearLayout.setVisibility(View.INVISIBLE);
+            }
 
     } // recuperer la position et les valeurs a modifier
+
+
+
+
+
 
     @Override
     public int getItemCount() {
@@ -42,10 +89,13 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public LinearLayout mLinearLayout;
         public ImageView mImageView;
         public TextView mTextView;
+        public RelativeLayout mRelativeLayout;
+
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -53,8 +103,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mTextView = itemView.findViewById(R.id.timeOfMood);
             mImageView = itemView.findViewById(R.id.iconComment);
             mLinearLayout = itemView.findViewById(R.id.layoutHistoryMood);
-
-
+            mRelativeLayout = itemView.findViewById(R.id.RelativeLayoutHistory);
 
 
         }
@@ -67,5 +116,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public MyAdapter(HistoryInfos myDataSet) {
         mDataSet = myDataSet;
+        mMood = new Mood();
     }
 }
