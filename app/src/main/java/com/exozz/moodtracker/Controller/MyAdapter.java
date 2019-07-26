@@ -60,9 +60,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
            mDataSet.getMyComments().get(position);
 
-
-           final String test = "test";
-           final String ActualComment = mDataSet.getMyComments().get(position).toString();
            if (mDataSet.getMyComments().isEmpty()) {
                myViewHolder.mImageView.setVisibility(View.INVISIBLE);
            } else
