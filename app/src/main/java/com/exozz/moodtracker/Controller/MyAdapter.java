@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exozz.moodtracker.Model.HistoryInfos;
 import com.exozz.moodtracker.Model.Mood;
@@ -27,8 +28,10 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
 
-    static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
-            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};
+    /*static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
+            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};*/
+
+    static final String[] PREF_KEY_DAY_TAB = new String[]{"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours", "Il y a 4 jours", "Il y a 3 jours", "Avant hier","Hier"};
 
 
    private HistoryInfos mDataSet;
@@ -46,8 +49,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
-
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
 
        if (mDataSet.getMyMoods().get(position) != -1) {
 
@@ -58,11 +60,21 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
            mDataSet.getMyComments().get(position);
 
+
+           final String test = "test";
+           final String ActualComment = mDataSet.getMyComments().get(position).toString();
            if (mDataSet.getMyComments().isEmpty()) {
                myViewHolder.mImageView.setVisibility(View.INVISIBLE);
            } else
                {
                    myViewHolder.mImageView.setVisibility(View.VISIBLE);
+                   myViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           Toast.makeText(view.getContext(),mDataSet.getMyComments().get(position), Toast.LENGTH_LONG ).show();
+
+                       }
+                   });
                }
 
            myViewHolder.mLinearLayout.setWeightSum(mDataSet.getMyMoods().set(3, position));
@@ -95,6 +107,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public ImageView mImageView;
         public TextView mTextView;
         public RelativeLayout mRelativeLayout;
+        public ImageView commentButton;
 
 
 
@@ -104,6 +117,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mImageView = itemView.findViewById(R.id.iconComment);
             mLinearLayout = itemView.findViewById(R.id.layoutHistoryMood);
             mRelativeLayout = itemView.findViewById(R.id.RelativeLayoutHistory);
+            commentButton = itemView.findViewById(R.id.iconComment);
 
 
         }
