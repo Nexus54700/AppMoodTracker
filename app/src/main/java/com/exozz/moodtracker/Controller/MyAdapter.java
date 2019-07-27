@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.exozz.moodtracker.R;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -28,10 +31,9 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
 
-    /*static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
-            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};*/
+    static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
+            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};
 
-    static final String[] PREF_KEY_DAY_TAB = new String[]{"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours", "Il y a 4 jours", "Il y a 3 jours", "Avant hier","Hier"};
 
 
    private HistoryInfos mDataSet;
@@ -50,32 +52,38 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
-
-       if (mDataSet.getMyMoods().get(position) != -1) {
+        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyMoods().get(position+1) + "");
+        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyDates().get(position+1) + "");
+        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyComments().get(position+1) + "");
+       if (mDataSet.getMyMoods().get(position+1) != -1) {
 
            myViewHolder.mLinearLayout.setVisibility(View.VISIBLE);
 
-           mDataSet.getMyDates().get(position);
+           mDataSet.getMyDates().get(position+1);
            myViewHolder.mTextView.setText(PREF_KEY_DAY_TAB[position]);
 
-           mDataSet.getMyComments().get(position);
+           mDataSet.getMyComments().get(position+1);
 
            if (mDataSet.getMyComments().isEmpty()) {
                myViewHolder.mImageView.setVisibility(View.INVISIBLE);
            } else
                {
                    myViewHolder.mImageView.setVisibility(View.VISIBLE);
-                   myViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
+                   myViewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View view) {
-                           Toast.makeText(view.getContext(),mDataSet.getMyComments().get(position), Toast.LENGTH_LONG ).show();
+                           Toast.makeText(view.getContext(),mDataSet.getMyComments().get(position+1), Toast.LENGTH_LONG ).show();
 
                        }
                    });
                }
 
-           myViewHolder.mLinearLayout.setWeightSum(mDataSet.getMyMoods().set(3, position));
-           int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position));
+
+           LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, RelativeLayout.LayoutParams.MATCH_PARENT,5 - mDataSet.getMyMoods().get(position+1));
+
+           myViewHolder.mRelativeLayout.setLayoutParams(lp);
+
+           int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position+1));
 
            myViewHolder.mRelativeLayout.setBackgroundColor(ContextCompat.getColor(myViewHolder.itemView.getContext(), color)); // essaie de recuperé la valeur du mood pour changer le background de la list
 
@@ -94,7 +102,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mDataSet.getSize();
+        return mDataSet.getSize()-1;
     }
 
 
@@ -114,7 +122,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mImageView = itemView.findViewById(R.id.iconComment);
             mLinearLayout = itemView.findViewById(R.id.layoutHistoryMood);
             mRelativeLayout = itemView.findViewById(R.id.RelativeLayoutHistory);
-            commentButton = itemView.findViewById(R.id.iconComment);
 
 
         }

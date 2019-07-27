@@ -30,14 +30,14 @@ public class HistoryInfos {
 
 
     static final String[] PREF_KEY_COMMENT_TAB = new String[]{"PREF_KEY_COMMENT1","PREF_KEY_COMMENT2",
-            "PREF_KEY_COMMENT3", "PREF_KEY_COMMENT4", "PREF_KEY_COMMENT5", "PREF_KEY_COMMENT6", "PREF_KEY_COMMENT7"};
+            "PREF_KEY_COMMENT3", "PREF_KEY_COMMENT4", "PREF_KEY_COMMENT5", "PREF_KEY_COMMENT6", "PREF_KEY_COMMENT7","PREF_KEY_COMMENT8"};
 
 
     static final String[] PREF_KEY_MOOD_TAB = new String[]{"PREF_KEY_MOOD1","PREF_KEY_MOOD2",
-            "PREF_KEY_MOOD3", "PREF_KEY_MOOD4", "PREF_KEY_MOOD5", "PREF_KEY_MOOD6", "PREF_KEY_MOOD7"};
+            "PREF_KEY_MOOD3", "PREF_KEY_MOOD4", "PREF_KEY_MOOD5", "PREF_KEY_MOOD6", "PREF_KEY_MOOD7","PREF_KEY_MOOD8"};
 
     static final String[] PREF_KEY_DATE_TAB = new String[]{"PREF_KEY_DATE1","PREF_KEY_DATE2",
-            "PREF_KEY_DATE3", "PREF_KEY_DATE4", "PREF_KEY_DATE5", "PREF_KEY_DATE6", "PREF_KEY_DATE7"};
+            "PREF_KEY_DATE3", "PREF_KEY_DATE4", "PREF_KEY_DATE5", "PREF_KEY_DATE6", "PREF_KEY_DATE7","PREF_KEY_DATE8"};
 
 
     public int getSize () {
@@ -88,12 +88,12 @@ public class HistoryInfos {
 
 
                 if ( daysDiff != 0) {
-                    for (int i = 6; i >= 0; i--) {
+                    for (int i = 7; i >= 0; i--) {
 
                         int y = i - (int) daysDiff;
 
 
-                        if (y >= 0 && y < 7) {
+                        if (y >= 0 && y < 8) {
                             String test1 = mPreferences.getString(PREF_KEY_DATE_TAB[y], "");
                             mPreferences.edit().putString(PREF_KEY_DATE_TAB[i], test1).apply();
 
@@ -125,7 +125,7 @@ public class HistoryInfos {
         myDates.clear();
         myComments.clear();
 
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i <= 7; i++) {
 
             myComments.add(mPreferences.getString(PREF_KEY_COMMENT_TAB[i], ""));
             myMoods.add(mPreferences.getInt(PREF_KEY_MOOD_TAB[i], -1));
