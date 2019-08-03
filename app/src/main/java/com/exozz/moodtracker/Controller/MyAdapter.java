@@ -1,11 +1,9 @@
 package com.exozz.moodtracker.Controller;
 
-import android.content.res.TypedArray;
-import android.graphics.Color;
+
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ import com.exozz.moodtracker.Model.HistoryInfos;
 import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.R;
 
-import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
@@ -32,7 +29,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     static final String[] PREF_KEY_DAY_TAB = new String[]{"Hier",
-            "Avant hier", "Il y a 3 jours", "Il y a 4 jours", "Il y a 5 jours", "Il y a 6 jours", "Il y a une semaine"};
+            "Avant hier", "Il y a trois jours", "Il y a quatre jours", "Il y a cinq jours", "Il y a six jours", "Il y a une semaine"};
 
 
 
