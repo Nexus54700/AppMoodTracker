@@ -3,7 +3,6 @@ package com.exozz.moodtracker.Controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,8 +29,8 @@ public class MainActivity extends AppCompatActivity  {
 
     private ImageView mHistoryButton;
     private ImageView mCommentButton;
+    private ImageView mShareButton;
     private String myComment;
-    private int myDates;
     private Mood mMood;
     private HistoryInfos mHistoryInfos;
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity  {
         mHistoryInfos.myDebug();
 
 
-
+        mShareButton = findViewById(R.id.iconShare);
 
         mHistoryButton = findViewById(R.id.historyButton);
 
@@ -79,7 +78,6 @@ public class MainActivity extends AppCompatActivity  {
                         myComment = weightInput.getText().toString();
                         Toast.makeText(MainActivity.this,"Commentaire ajouté !", Toast.LENGTH_LONG ).show();
                         Toast.makeText(MainActivity.this,  myComment , Toast.LENGTH_LONG ).show();
-                        /*mPreferences.edit().putString(PREFS_COMMENT, myComment).apply();*/
 
                     }
                 });
@@ -94,6 +92,16 @@ public class MainActivity extends AppCompatActivity  {
 
                 mydialog.show();
       }
+        });
+
+
+        mShareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /* Implement  share intent */
+
+
+            }
         });
 
         final ConstraintLayout myLayout = findViewById(R.id.LinearLayout);

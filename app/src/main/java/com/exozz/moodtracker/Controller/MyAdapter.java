@@ -1,13 +1,18 @@
 package com.exozz.moodtracker.Controller;
 
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.SmsManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -35,6 +40,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
    private HistoryInfos mDataSet;
    private Mood mMood;
+   private String mNumberPhone;
 
 
 
@@ -63,8 +69,10 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
            if (mDataSet.getMyComments().isEmpty()) {
                myViewHolder.mImageView.setVisibility(View.INVISIBLE);
+               myViewHolder.mShare.setVisibility(View.INVISIBLE);
            } else
                {
+
                    myViewHolder.mImageView.setVisibility(View.VISIBLE);
                    myViewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
                        @Override
@@ -73,12 +81,17 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                        }
                    });
+
+
+
                }
 
 
            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, RelativeLayout.LayoutParams.MATCH_PARENT,5 - mDataSet.getMyMoods().get(position+1));
 
            myViewHolder.mRelativeLayout.setLayoutParams(lp);
+
+           /*   implement getHeight... */
 
            int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position+1));
 
@@ -107,6 +120,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public LinearLayout mLinearLayout;
         public ImageView mImageView;
+        public ImageView mShare;
         public TextView mTextView;
         public RelativeLayout mRelativeLayout;
         public ImageView commentButton;
@@ -117,6 +131,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             mTextView = itemView.findViewById(R.id.timeOfMood);
             mImageView = itemView.findViewById(R.id.iconComment);
+            mShare = itemView.findViewById(R.id.iconShare);
             mLinearLayout = itemView.findViewById(R.id.layoutHistoryMood);
             mRelativeLayout = itemView.findViewById(R.id.RelativeLayoutHistory);
 

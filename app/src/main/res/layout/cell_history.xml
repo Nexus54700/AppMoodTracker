@@ -17,6 +17,8 @@
         android:background="@color/banana_yellow">
 
 
+
+
         <ImageView
             android:id="@+id/iconComment"
             android:layout_width="wrap_content"
@@ -31,6 +33,10 @@
             app:srcCompat="@mipmap/ic_comment_black_48px"
             android:visibility="visible"/>
 
+
+
+
+
         <TextView
             android:id="@+id/timeOfMood"
             android:layout_width="wrap_content"
@@ -40,6 +46,7 @@
             android:textSize="12sp"
             android:maxLines="2"
             android:textStyle="bold" />
+
 
     </RelativeLayout>
 </LinearLayout>
