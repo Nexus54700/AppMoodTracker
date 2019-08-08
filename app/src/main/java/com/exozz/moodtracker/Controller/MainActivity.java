@@ -99,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
                 /* Implement  share intent */
 
 
+                String shareBody = "Here is the share content body";
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Partage ton humeur du jour !");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+
+            startActivity(shareIntent);
             }
         });
 
