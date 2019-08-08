@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private ImageView mHistoryButton;
     private ImageView mCommentButton;
@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity  {
     private String myComment;
     private Mood mMood;
     private HistoryInfos mHistoryInfos;
-
-
 
 
     @Override
@@ -76,8 +74,8 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         myComment = weightInput.getText().toString();
-                        Toast.makeText(MainActivity.this,"Commentaire ajouté !", Toast.LENGTH_LONG ).show();
-                        Toast.makeText(MainActivity.this,  myComment , Toast.LENGTH_LONG ).show();
+                        Toast.makeText(MainActivity.this, "Commentaire ajouté !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, myComment, Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -86,12 +84,12 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
-                        myComment = null ;
+                        myComment = null;
                     }
                 });
 
                 mydialog.show();
-      }
+            }
         });
 
 
@@ -110,10 +108,6 @@ public class MainActivity extends AppCompatActivity  {
         mMood = new Mood();
         myLayout.setBackgroundColor(getResources().getColor(mMood.getBackgroundColor()));
         mySmileyFace.setImageResource(mMood.getSmileyList());
-
-
-
-
 
 
         myLayout.setOnTouchListener(new OnSwipeTouchListener(this) {
@@ -139,9 +133,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-
-
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -152,9 +143,6 @@ public class MainActivity extends AppCompatActivity  {
 
         mHistoryInfos.addPrefs(mMood.getChoiceList(), myComment, strDate);
         mHistoryInfos.myDebug();
-
-
-
 
 
     }

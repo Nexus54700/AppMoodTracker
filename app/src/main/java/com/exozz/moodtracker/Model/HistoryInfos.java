@@ -1,11 +1,8 @@
 package com.exozz.moodtracker.Model;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.support.annotation.ColorRes;
 import android.util.Log;
 
-import com.exozz.moodtracker.R;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,21 +19,20 @@ public class HistoryInfos {
     private ArrayList<String> myComments ;
     private ArrayList<Integer> myMoods;
     private ArrayList<String> myDates;
-    private ArrayList<Color> myColors;
 
 
 
     private SharedPreferences mPreferences;
 
 
-    static final String[] PREF_KEY_COMMENT_TAB = new String[]{"PREF_KEY_COMMENT1","PREF_KEY_COMMENT2",
+    private static final String[] PREF_KEY_COMMENT_TAB = new String[]{"PREF_KEY_COMMENT1","PREF_KEY_COMMENT2",
             "PREF_KEY_COMMENT3", "PREF_KEY_COMMENT4", "PREF_KEY_COMMENT5", "PREF_KEY_COMMENT6", "PREF_KEY_COMMENT7","PREF_KEY_COMMENT8"};
 
 
-    static final String[] PREF_KEY_MOOD_TAB = new String[]{"PREF_KEY_MOOD1","PREF_KEY_MOOD2",
+    private static final String[] PREF_KEY_MOOD_TAB = new String[]{"PREF_KEY_MOOD1","PREF_KEY_MOOD2",
             "PREF_KEY_MOOD3", "PREF_KEY_MOOD4", "PREF_KEY_MOOD5", "PREF_KEY_MOOD6", "PREF_KEY_MOOD7","PREF_KEY_MOOD8"};
 
-    static final String[] PREF_KEY_DATE_TAB = new String[]{"PREF_KEY_DATE1","PREF_KEY_DATE2",
+    private static final String[] PREF_KEY_DATE_TAB = new String[]{"PREF_KEY_DATE1","PREF_KEY_DATE2",
             "PREF_KEY_DATE3", "PREF_KEY_DATE4", "PREF_KEY_DATE5", "PREF_KEY_DATE6", "PREF_KEY_DATE7","PREF_KEY_DATE8"};
 
 
@@ -59,7 +55,7 @@ public class HistoryInfos {
 
     }
 
-    public void getPrefs () {
+    private void getPrefs() {
 
 
 
@@ -67,11 +63,8 @@ public class HistoryInfos {
 
         LastDate = mPreferences.getString(PREF_KEY_DATE_TAB[0], "");
 
-        if (LastDate.isEmpty())
+        if ( ! LastDate.isEmpty())
         {
-
-        }
-        else {
             Date myDate = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
             String strDates = dateFormat.format(myDate);
@@ -106,7 +99,7 @@ public class HistoryInfos {
                             mPreferences.edit().putString(PREF_KEY_DATE_TAB[i], "").apply();
                             mPreferences.edit().putString(PREF_KEY_COMMENT_TAB[i], "").apply();
                             mPreferences.edit().putInt(PREF_KEY_MOOD_TAB[i], -1).apply();
-                        } // mettre les cases vide
+                        }
 
                     }
                 }
@@ -119,7 +112,7 @@ public class HistoryInfos {
         refresh();
     }
 
-    public void refresh () {
+    private void refresh() {
 
         myMoods.clear();
         myDates.clear();
