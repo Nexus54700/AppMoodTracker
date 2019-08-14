@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private HistoryInfos mHistoryInfos;
 
 
+    static final String[] PREF_KEY_MOOD_TAB = new String[]{"je suis super content !",
+            "je suis heureux !", "je vais bien.", "je suis triste...", "je suis déprimé ..."};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,16 +100,17 @@ public class MainActivity extends AppCompatActivity {
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /* Implement  share intent */
 
+                String shareBody = PREF_KEY_MOOD_TAB[mMood.getChoiceList()] + " Voici mon commentaire : " + myComment;
 
-                String shareBody = "Here is the share content body";
+                if (myComment == null ) {
+                    shareBody = PREF_KEY_MOOD_TAB[mMood.getChoiceList()] ;
+                }
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Partage ton humeur du jour !");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-
-            startActivity(shareIntent);
+                startActivity(shareIntent);
             }
         });
 

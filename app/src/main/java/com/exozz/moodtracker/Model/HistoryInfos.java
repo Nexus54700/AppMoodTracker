@@ -58,29 +58,23 @@ public class HistoryInfos {
     private void getPrefs() {
 
 
-
-        String LastDate ;
+        String LastDate;
 
         LastDate = mPreferences.getString(PREF_KEY_DATE_TAB[0], "");
 
-        if ( ! LastDate.isEmpty())
-        {
+        if (!LastDate.isEmpty()) {
             Date myDate = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
             String strDates = dateFormat.format(myDate);
-
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             try {
                 Date strDate = sdf.parse(LastDate);
                 long msDiff = Calendar.getInstance().getTimeInMillis() - strDate.getTime();
                 long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
-                Log.d(TAG, "HistoryInfos compare date : " + LastDate+ "");
+                Log.d(TAG, "HistoryInfos compare date : " + LastDate + "");
                 Log.d(TAG, "HistoryInfos compare date : " + strDates + "");
                 Log.d(TAG, "HistoryInfos compare date : " + daysDiff + "");
-
-
-                if ( daysDiff != 0) {
+                if (daysDiff != 0) {
                     for (int i = 7; i >= 0; i--) {
 
                         int y = i - (int) daysDiff;
@@ -100,14 +94,12 @@ public class HistoryInfos {
                             mPreferences.edit().putString(PREF_KEY_COMMENT_TAB[i], "").apply();
                             mPreferences.edit().putInt(PREF_KEY_MOOD_TAB[i], -1).apply();
                         }
-
                     }
                 }
 
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
         }
         refresh();
     }

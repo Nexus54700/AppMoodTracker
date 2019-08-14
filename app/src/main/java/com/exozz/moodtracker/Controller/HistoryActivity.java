@@ -5,14 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 
 import com.exozz.moodtracker.Model.HistoryInfos;
 import com.exozz.moodtracker.R;
 
 public class HistoryActivity extends AppCompatActivity {
-
 
 
     private SharedPreferences mPreferences;
@@ -28,10 +27,18 @@ public class HistoryActivity extends AppCompatActivity {
         mPreferences = getSharedPreferences(HistoryInfos.MY_PREFS, MODE_PRIVATE);
         mHistoryInfos = new HistoryInfos(mPreferences);
 
-        final RecyclerView rv = findViewById(R.id.historyMood);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new MyAdapter(mHistoryInfos));
 
 
+        final LinearLayout linearLayout = findViewById(R.id.HistoryLinear);
+        linearLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                linearLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                int height = linearLayout.getHeight();
+                final RecyclerView rv = findViewById(R.id.historyMood);
+                rv.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
+                rv.setAdapter(new MyAdapter(mHistoryInfos, height));
+            }
+        });
     }
 }

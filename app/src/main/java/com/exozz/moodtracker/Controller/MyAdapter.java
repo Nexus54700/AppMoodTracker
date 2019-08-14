@@ -4,10 +4,8 @@ package com.exozz.moodtracker.Controller;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +20,10 @@ import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.R;
 
 
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -32,9 +34,14 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             "Avant hier", "Il y a trois jours", "Il y a quatre jours", "Il y a cinq jours", "Il y a six jours", "Il y a une semaine"};
 
 
+
+
+
+
     private HistoryInfos mDataSet;
     private Mood mMood;
     private String mNumberPhone;
+    private int mHeightSize;
 
 
     @NonNull
@@ -54,6 +61,8 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         if (mDataSet.getMyMoods().get(position + 1) != -1) {
 
             myViewHolder.mLinearLayout.setVisibility(View.VISIBLE);
+
+
 
             mDataSet.getMyDates().get(position + 1);
             myViewHolder.mTextView.setText(PREF_KEY_DAY_TAB[position]);
@@ -83,24 +92,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             myViewHolder.mRelativeLayout.setLayoutParams(lp);
 
 
-            /*   implement getHeight... */
-
-            DisplayMetrics displayMetrics = myViewHolder.mLinearLayout.getResources().getDisplayMetrics();
-            int width = displayMetrics.widthPixels;
-            int height = displayMetrics.heightPixels;
-
-            final int sizePhone = height / 7;
-
-
-
-
-            LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, sizePhone, 0);
-            myViewHolder.mLinearLayout.setLayoutParams(lp2);
-
-
-
-
-
             int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position + 1));
 
             myViewHolder.mRelativeLayout.setBackgroundColor(ContextCompat.getColor(myViewHolder.itemView.getContext(), color)); // essaie de recuperé la valeur du mood pour changer le background de la list
@@ -110,6 +101,12 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             myViewHolder.mLinearLayout.setVisibility(View.INVISIBLE);
         }
 
+
+        final int sizePhone = mHeightSize / 7;
+        Log.d(TAG, "Height size =" + mHeightSize + " ");
+
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, sizePhone, 0);
+        myViewHolder.mLinearLayout.setLayoutParams(lp2);
     } // recuperer la position et les valeurs a modifier
 
 
@@ -145,8 +142,9 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         mDataSet = dataset;
     }
 
-    public MyAdapter(HistoryInfos myDataSet) {
+    public MyAdapter(HistoryInfos myDataSet, int statusSize) {
         mDataSet = myDataSet;
         mMood = new Mood();
+        mHeightSize = statusSize;
     }
 }
