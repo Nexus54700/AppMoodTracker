@@ -5,16 +5,14 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View.OnTouchListener;
-import android.widget.Toast;
 
 public abstract class OnSwipeTouchListener implements OnTouchListener {
 
     protected final GestureDetector gestureDetector;
 
-    public OnSwipeTouchListener (Context ctx){
+    public OnSwipeTouchListener(Context ctx) {
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
-
 
 
     private final class GestureListener extends SimpleOnGestureListener {
@@ -32,7 +30,6 @@ public abstract class OnSwipeTouchListener implements OnTouchListener {
             boolean result = false;
             try {
                 float diffY = e2.getY() - e1.getY();
-                float diffX = e2.getX() - e1.getX();
 
                 if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                     if (diffY > 0) {
@@ -49,7 +46,6 @@ public abstract class OnSwipeTouchListener implements OnTouchListener {
             return result;
         }
     }
-
 
 
     public void onSwipeTop() {

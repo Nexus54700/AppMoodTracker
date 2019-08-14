@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class Mood {
 
-    private int ChoiceList ;
-    private final ArrayList<Integer>  smileyList;
+    private int ChoiceList;
+    private final ArrayList<Integer> smileyList;
     private final ArrayList<Integer> backgroundColor;
 
 
     public Mood() {
         ChoiceList = 1;
-    smileyList = new ArrayList<>(5);
+        smileyList = new ArrayList<>(5);
         smileyList.add(R.mipmap.smiley_super_happy);
         smileyList.add(R.mipmap.smiley_happy);
         smileyList.add(R.mipmap.smiley_normal);
@@ -22,7 +22,7 @@ public class Mood {
         smileyList.add(R.mipmap.smiley_sad);
 
 
-    backgroundColor = new ArrayList<>(5) ;
+        backgroundColor = new ArrayList<>(5);
         backgroundColor.add(R.color.banana_yellow);
         backgroundColor.add(R.color.light_sage);
         backgroundColor.add(R.color.cornflower_blue_65);
@@ -31,8 +31,9 @@ public class Mood {
 
     }
 
-    public ArrayList<Integer> getBackgroundColors() {return backgroundColor; }
-
+    public ArrayList<Integer> getBackgroundColors() {
+        return backgroundColor;
+    }
 
 
     public Integer getSmileyList() {
@@ -43,24 +44,23 @@ public class Mood {
         return backgroundColor.get(ChoiceList);
     }
 
-    public void IncrementSmiley (){
+    public void IncrementSmiley() {
 
-        if (ChoiceList > 0 ) {
+        if (ChoiceList > 0) {
             ChoiceList--;
         }
 
     }
 
-    public void DecrementSmiley (){
+    public void DecrementSmiley() {
         if (ChoiceList < 4) {
             ChoiceList++;
         }
 
 
-
     }
 
-    public int getChoiceList (){
+    public int getChoiceList() {
         return ChoiceList;
     }
 

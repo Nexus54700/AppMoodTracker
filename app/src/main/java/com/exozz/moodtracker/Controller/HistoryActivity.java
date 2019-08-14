@@ -8,25 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
-import com.exozz.moodtracker.Model.HistoryInfos;
+import com.exozz.moodtracker.Model.HistoryInfo;
 import com.exozz.moodtracker.R;
 
 public class HistoryActivity extends AppCompatActivity {
 
 
     private SharedPreferences mPreferences;
-
-
-    private HistoryInfos mHistoryInfos;
+    private HistoryInfo mHistoryInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        mPreferences = getSharedPreferences(HistoryInfos.MY_PREFS, MODE_PRIVATE);
-        mHistoryInfos = new HistoryInfos(mPreferences);
-
+        mPreferences = getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE);
+        mHistoryInfo = new HistoryInfo(mPreferences);
 
 
         final LinearLayout linearLayout = findViewById(R.id.HistoryLinear);
@@ -37,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
                 int height = linearLayout.getHeight();
                 final RecyclerView rv = findViewById(R.id.historyMood);
                 rv.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
-                rv.setAdapter(new MyAdapter(mHistoryInfos, height));
+                rv.setAdapter(new MyAdapter(mHistoryInfo, height));
 
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(HistoryActivity.this);
                 mLayoutManager.setReverseLayout(true);

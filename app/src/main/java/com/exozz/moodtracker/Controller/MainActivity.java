@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.exozz.moodtracker.Model.HistoryInfos;
+import com.exozz.moodtracker.Model.HistoryInfo;
 import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.View.OnSwipeTouchListener;
 import com.exozz.moodtracker.R;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mShareButton;
     private String myComment;
     private Mood mMood;
-    private HistoryInfos mHistoryInfos;
+    private HistoryInfo mHistoryInfos;
 
 
     static final String[] PREF_KEY_MOOD_TAB = new String[]{"je suis super content !",
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mHistoryInfos = new HistoryInfos(getSharedPreferences(HistoryInfos.MY_PREFS, MODE_PRIVATE));
+        mHistoryInfos = new HistoryInfo(getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE));
         mHistoryInfos.myDebug();
 
 
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
                 String shareBody = PREF_KEY_MOOD_TAB[mMood.getChoiceList()] + " Voici mon commentaire : " + myComment;
 
-                if (myComment == null ) {
-                    shareBody = PREF_KEY_MOOD_TAB[mMood.getChoiceList()] ;
+                if (myComment == null) {
+                    shareBody = PREF_KEY_MOOD_TAB[mMood.getChoiceList()];
                 }
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
