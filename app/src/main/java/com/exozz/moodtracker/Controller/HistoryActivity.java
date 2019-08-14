@@ -38,6 +38,12 @@ public class HistoryActivity extends AppCompatActivity {
                 final RecyclerView rv = findViewById(R.id.historyMood);
                 rv.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
                 rv.setAdapter(new MyAdapter(mHistoryInfos, height));
+
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(HistoryActivity.this);
+                mLayoutManager.setReverseLayout(true);
+                mLayoutManager.setStackFromEnd(true);
+                rv.setLayoutManager(mLayoutManager);
+
             }
         });
     }

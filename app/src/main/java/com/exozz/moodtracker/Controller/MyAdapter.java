@@ -3,8 +3,8 @@ package com.exozz.moodtracker.Controller;
 
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +18,6 @@ import android.widget.Toast;
 import com.exozz.moodtracker.Model.HistoryInfos;
 import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.R;
-
-
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,7 +35,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private HistoryInfos mDataSet;
     private Mood mMood;
-    private String mNumberPhone;
     private int mHeightSize;
 
 
@@ -61,6 +55,8 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         if (mDataSet.getMyMoods().get(position + 1) != -1) {
 
             myViewHolder.mLinearLayout.setVisibility(View.VISIBLE);
+
+
 
 
 
