@@ -80,7 +80,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             int color = mMood.getBackgroundColors().get(mDataSet.getMyMoods().get(position + 1));
 
-            myViewHolder.mRelativeLayout.setBackgroundColor(ContextCompat.getColor(myViewHolder.itemView.getContext(), color)); // essaie de recuperé la valeur du mood pour changer le background de la list
+            myViewHolder.mRelativeLayout.setBackgroundColor(ContextCompat.getColor(myViewHolder.itemView.getContext(), color));
 
 
         } else {
@@ -93,7 +93,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, sizePhone, 0);
         myViewHolder.mLinearLayout.setLayoutParams(lp2);
-    } // recuperer la position et les valeurs a modifier
+    }
 
 
     @Override
