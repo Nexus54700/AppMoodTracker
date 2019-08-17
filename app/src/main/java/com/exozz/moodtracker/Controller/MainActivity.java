@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mShareButton;
     private String myComment;
     private Mood mMood;
-    private HistoryInfo mHistoryInfos;
+    private HistoryInfo mHistoryInfo;
 
 
     static final String[] PREF_KEY_MOOD_TAB = new String[]{"je suis super content !",
@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mHistoryInfos = new HistoryInfo(getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE));
+        mHistoryInfo = new HistoryInfo(getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE));
 
         if (BuildConfig.DEBUG) {
-            mHistoryInfos.myDebug();
+            mHistoryInfo.myDebug();
         }
 
 
@@ -158,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String strDate = dateFormat.format(myDate);
 
-        mHistoryInfos.addPrefs(mMood.getChoiceList(), myComment, strDate);
+        mHistoryInfo.addPrefs(mMood.getChoiceList(), myComment, strDate);
         if (BuildConfig.DEBUG) {
-            mHistoryInfos.myDebug();
+            mHistoryInfo.myDebug();
         }
 
 
