@@ -17,8 +17,6 @@
         android:background="@color/banana_yellow">
 
 
-
-
         <ImageView
             android:id="@+id/iconComment"
             android:layout_width="wrap_content"
@@ -30,11 +28,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            app:srcCompat="@mipmap/ic_comment_black_48px"
-            android:visibility="visible"/>
-
-
-
+            android:visibility="visible"
+            app:srcCompat="@mipmap/ic_comment_black_48px" />
 
 
         <TextView
@@ -42,9 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:maxLines="2"
             android:text="Aujourd'hui"
             android:textSize="12sp"
-            android:maxLines="2"
             android:textStyle="bold" />
 
 

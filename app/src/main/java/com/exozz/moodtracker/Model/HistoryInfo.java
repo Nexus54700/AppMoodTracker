@@ -67,9 +67,6 @@ public class HistoryInfo {
                 Date strDate = sdf.parse(LastDate);
                 long msDiff = Calendar.getInstance().getTimeInMillis() - strDate.getTime();
                 long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
-                Log.d(TAG, "HistoryInfo compare date : " + LastDate + "");
-                Log.d(TAG, "HistoryInfo compare date : " + strDates + "");
-                Log.d(TAG, "HistoryInfo compare date : " + daysDiff + "");
                 if (daysDiff != 0) {
                     for (int i = 7; i >= 0; i--) {
 

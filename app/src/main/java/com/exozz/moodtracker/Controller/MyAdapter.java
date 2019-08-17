@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exozz.moodtracker.BuildConfig;
 import com.exozz.moodtracker.Model.HistoryInfo;
 import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.R;
@@ -42,9 +43,13 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
-        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyMoods().get(position + 1) + "");
-        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyDates().get(position + 1) + "");
-        Log.d(TAG, "pos = " + position + " " + mDataSet.getMyComments().get(position + 1) + "");
+
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "pos = " + position + " " + mDataSet.getMyMoods().get(position + 1) + "");
+            Log.d(TAG, "pos = " + position + " " + mDataSet.getMyDates().get(position + 1) + "");
+            Log.d(TAG, "pos = " + position + " " + mDataSet.getMyComments().get(position + 1) + "");
+        }
+
         if (mDataSet.getMyMoods().get(position + 1) != -1) {
 
             myViewHolder.mLinearLayout.setVisibility(View.VISIBLE);
@@ -89,7 +94,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
         final int sizePhone = mHeightSize / 7;
-        Log.d(TAG, "Height size =" + mHeightSize + " ");
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, sizePhone, 0);
         myViewHolder.mLinearLayout.setLayoutParams(lp2);

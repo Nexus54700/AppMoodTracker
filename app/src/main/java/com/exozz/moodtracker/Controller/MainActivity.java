@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.exozz.moodtracker.BuildConfig;
 import com.exozz.moodtracker.Model.HistoryInfo;
 import com.exozz.moodtracker.Model.Mood;
 import com.exozz.moodtracker.View.OnSwipeTouchListener;
@@ -45,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mHistoryInfos = new HistoryInfo(getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE));
-        mHistoryInfos.myDebug();
+
+        if (BuildConfig.DEBUG) {
+            mHistoryInfos.myDebug();
+        }
+
 
 
         mShareButton = findViewById(R.id.iconShare);
@@ -154,7 +159,9 @@ public class MainActivity extends AppCompatActivity {
         String strDate = dateFormat.format(myDate);
 
         mHistoryInfos.addPrefs(mMood.getChoiceList(), myComment, strDate);
-        mHistoryInfos.myDebug();
+        if (BuildConfig.DEBUG) {
+            mHistoryInfos.myDebug();
+        }
 
 
     }
