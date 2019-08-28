@@ -36,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
     private HistoryInfo mHistoryInfo;
 
 
+
     static final String[] PREF_KEY_MOOD_TAB = new String[]{"je suis super content !",
             "je suis heureux !", "je vais bien.", "je suis triste...", "je suis déprimé ..."};
+
+
+
 
 
     @Override
@@ -45,12 +49,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final ConstraintLayout myLayout = findViewById(R.id.LinearLayout);
+        final ImageView mySmileyFace = findViewById(R.id.SmileyFace);
+
+
+        mMood = new Mood();
+
+
+
+
+
+
         mHistoryInfo = new HistoryInfo(getSharedPreferences(HistoryInfo.MY_PREFS, MODE_PRIVATE));
+
 
         if (BuildConfig.DEBUG) {
             mHistoryInfo.myDebug();
         }
-
 
 
         mShareButton = findViewById(R.id.iconShare);
@@ -68,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
         mCommentButton = findViewById(R.id.addCommentButton);
 
+
+
+
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
 
                 final EditText weightInput = new EditText(MainActivity.this);
                 weightInput.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                if ( mHistoryInfo.getMyComments().get(0).isEmpty() ) {
+                    weightInput.setText("Ecrivez ici votre commentaire !");
+
+                } else {
+                    weightInput.setText(mHistoryInfo.getMyComments().get(0));
+                }
+
                 mydialog.setView(weightInput);
 
 
@@ -119,12 +145,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ConstraintLayout myLayout = findViewById(R.id.LinearLayout);
-        final ImageView mySmileyFace = findViewById(R.id.SmileyFace);
 
-        mMood = new Mood();
-        myLayout.setBackgroundColor(getResources().getColor(mMood.getBackgroundColor()));
-        mySmileyFace.setImageResource(mMood.getSmileyList());
+
 
 
         myLayout.setOnTouchListener(new OnSwipeTouchListener(this) {
@@ -147,6 +169,16 @@ public class MainActivity extends AppCompatActivity {
                 return gestureDetector.onTouchEvent(event);
             }
         });
+
+
+
+
+
+        if ( mHistoryInfo.getMyMoods().get(0) != -1 ){
+            myLayout.setBackgroundColor(getResources().getColor(mMood.getBackgroundColors().get(mHistoryInfo.getMyMoods().get(0))));
+            mySmileyFace.setImageResource(mMood.getSmileyLists().get(mHistoryInfo.getMyMoods().get(0)));
+
+        }
     }
 
 
@@ -164,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
     }
+
 }
 

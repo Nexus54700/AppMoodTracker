@@ -13,7 +13,6 @@ public class Mood {
 
 
     public Mood() {
-        ChoiceList = 1;
         smileyList = new ArrayList<>(5);
         smileyList.add(R.mipmap.smiley_super_happy);
         smileyList.add(R.mipmap.smiley_happy);
@@ -33,6 +32,10 @@ public class Mood {
 
     public ArrayList<Integer> getBackgroundColors() {
         return backgroundColor;
+    }
+
+    public ArrayList<Integer> getSmileyLists(){
+        return  smileyList;
     }
 
 
